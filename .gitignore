@@ -1,0 +1,73 @@
+## Diretórios de build
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+build/
+bld/
+[Ll]og/
+[Ll]ogs/
+
+## Arquivos do Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+
+## Arquivos do Rider / ReSharper
+.idea/
+*.sln.iml
+_ReSharper*/
+*.[Rr]e[Ss]harper
+
+## Arquivos do VS Code
+.vscode/
+
+## Resultados de build e pacotes NuGet
+*.dll
+*.exe
+*.pdb
+*.cache
+project.lock.json
+project.fragment.lock.json
+artifacts/
+**/packages/*
+!**/packages/build/
+*.nupkg
+*.snupkg
+
+## Testes
+[Tt]est[Rr]esult*/
+*.trx
+*.coverage
+*.coveragexml
+coverage/
+.sonarqube/
+
+## Publicação
+**/Properties/PublishProfiles/*.pubxml.user
+publish/
+*.publishsettings
+
+## Arquivos de usuário e ambiente
+*.env
+appsettings.*.local.json
+secrets.json
+*.pfx
+appsettings.Development.json
+
+## Diversos / SO
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.bak
+*.swp
+~$*
