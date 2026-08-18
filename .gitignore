@@ -31,7 +31,7 @@ _ReSharper*/
 .vscode/
 
 ## Bibliotecas client-side de terceiros (restauradas via LibMan/npm)
-wwwroot/lib/
+**/wwwroot/lib/
 
 ## Resultados de build e pacotes NuGet
 *.dll
