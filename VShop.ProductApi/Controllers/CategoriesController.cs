@@ -27,6 +27,64 @@ namespace VShop.ProductApi.Controllers
             return Ok(categoriesDTO);
         }
 
-        [HttpGet()]
+        [HttpGet("{id:int}", Name = "GetCategory")]
+        public async Task<ActionResult<CategoryDTO>> GetById(int id)
+        {
+            var categoryDTO = await _categoryService.GetCategoryById(id);
+
+            if (categoryDTO is null)
+                return NotFound("Category not found");
+
+            return Ok(categoryDTO);
+        }
+
+        [HttpGet("products")]
+        public async Task<ActionResult<CategoryDTO>> GetCateriesProducts()
+        {
+            var categories = await _categoryService.GetCategoriesProducts();
+
+            if (categories is null)
+                return NotFound("Categories with products not found");
+
+            return Ok(categories);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<CategoryDTO>> Create([FromBody] CategoryDTO categoryDTO)
+        {
+            if (categoryDTO is null)
+                return BadRequest("Invalid Data");
+
+            await _categoryService.AddCategory(categoryDTO);
+
+            return new CreatedAtRouteResult("GetCategory", new { id = categoryDTO.CategoryId }, categoryDTO);
+        }
+
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult<CategoryDTO>> Update(int id, [FromBody] CategoryDTO categoryDTO)
+        {
+            if (id != categoryDTO.CategoryId)
+                return BadRequest();
+
+            if (categoryDTO is null)
+                return BadRequest();
+
+            await _categoryService.UpdateCategory(categoryDTO);
+
+            return Ok(categoryDTO);
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult<CategoryDTO>> Delete(int id)
+        {
+            var categotyDTO = await _categoryService.GetCategoryById(id);
+
+            if (categotyDTO is null)
+                return NotFound("Category not found");
+
+            await _categoryService.RemoveCategory(id);
+
+            return Ok(categotyDTO);
+        } 
     }
 }

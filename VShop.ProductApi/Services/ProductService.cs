@@ -25,12 +25,7 @@ namespace VShop.ProductApi.Services
         {
             var productEntity = await _productRepository.GetById(id);
             return _mapper.Map<ProductDTO>(productEntity);
-        }
-        public async Task<IEnumerable<ProductDTO>> GetProductCategory()
-        {
-            var productEntity = await _productRepository.GetProductsCategories();
-            return _mapper.Map<IEnumerable<ProductDTO>>(productEntity);
-        }
+        }     
         public async Task AddProduct(ProductDTO productDTO)
         {
             var productEntity = _mapper.Map<Product>(productDTO);
