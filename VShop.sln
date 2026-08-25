@@ -12,6 +12,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VShop.Web", "VShop.Web\VShop.Web.csproj", "{4F31C814-D0F8-41C7-97E9-BE51AA79AA30}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{343BFAD1-D0AC-4F9C-A0DA-E0C1EAE6C9FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VShop.IdentityServe", "VShop.IdentityServe\VShop.IdentityServe.csproj", "{4A404EF7-4361-4B45-AB46-AC0B5C179499}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,9 +32,18 @@ Global
 		{4F31C814-D0F8-41C7-97E9-BE51AA79AA30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F31C814-D0F8-41C7-97E9-BE51AA79AA30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F31C814-D0F8-41C7-97E9-BE51AA79AA30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A404EF7-4361-4B45-AB46-AC0B5C179499}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A404EF7-4361-4B45-AB46-AC0B5C179499}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A404EF7-4361-4B45-AB46-AC0B5C179499}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A404EF7-4361-4B45-AB46-AC0B5C179499}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A30E5089-283C-44FC-BB70-BBB128C31145} = {343BFAD1-D0AC-4F9C-A0DA-E0C1EAE6C9FB}
+		{4F31C814-D0F8-41C7-97E9-BE51AA79AA30} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{4A404EF7-4361-4B45-AB46-AC0B5C179499} = {343BFAD1-D0AC-4F9C-A0DA-E0C1EAE6C9FB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5113042A-C90B-479A-9641-74FADADEA483}
