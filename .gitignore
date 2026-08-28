@@ -66,6 +66,9 @@ secrets.json
 *.pfx
 appsettings.Development.json
 
+## Chaves de assinatura do Duende IdentityServer (geradas localmente)
+VShop.IdentityServe/keys/
+
 ## Diversos / SO
 .DS_Store
 Thumbs.db

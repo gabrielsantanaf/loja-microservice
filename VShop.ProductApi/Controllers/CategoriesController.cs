@@ -1,12 +1,16 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using VShop.ProductApi.DTOs;
 using VShop.ProductApi.Services;
+using VShop.Web.Roles;
 
 namespace VShop.ProductApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CategoriesController : ControllerBase
     {
         private readonly ICategoryService _categoryService;
@@ -75,6 +79,7 @@ namespace VShop.ProductApi.Controllers
         }
 
         [HttpDelete("{id:int}")]
+        [Authorize(Roles = Role.Admin)]
         public async Task<ActionResult<CategoryDTO>> Delete(int id)
         {
             var categotyDTO = await _categoryService.GetCategoryById(id);

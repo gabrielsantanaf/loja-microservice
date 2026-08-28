@@ -42,8 +42,8 @@ namespace VShop.IdentityServe.Configuration
                     ClientId = "vshop",
                     ClientSecrets = { new Secret("abracadabra#simsalabim".Sha256())},
                     AllowedGrantTypes = GrantTypes.Code, //via codigo
-                    RedirectUris = {"https://localhost:7165/signin-oidc"}, //Login
-                    PostLogoutRedirectUris = {"https://localhost:7165/signout-callback-oidc"}, // Logout
+                    RedirectUris = {"https://localhost:7294/signin-oidc", "http://localhost:5262/signin-oidc"}, //Login
+                    PostLogoutRedirectUris = {"https://localhost:7294/signout-callback-oidc", "http://localhost:5262/signout-callback-oidc"}, // Logout
                     AllowedScopes = new List<string>
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
