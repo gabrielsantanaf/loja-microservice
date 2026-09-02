@@ -82,7 +82,7 @@ namespace VShop.CartApi.Repositories
             var cartHeader = await _context.CartHeaders.AsNoTracking().FirstOrDefaultAsync(
                                     c => c.UserId == cart.CartHeader.UserId);
 
-            if (cartHeader is not null) 
+            if (cartHeader is null) 
             {
                 //criar o header e os itens
                 await CreateCartHeaderAndItems(cart);
