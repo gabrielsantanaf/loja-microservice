@@ -25,9 +25,9 @@ namespace VShop.Web.Services
         public async Task<IEnumerable<ProductViewModel>> GetAllProducts(string token)
         {
             var client = _clientFactory.CreateClient("ProductApi");
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            PutTokenInHeaderAuthorization(token, client);
 
-            using (var response = await client.GetAsync(apiEndpoint)) 
+            using (var response = await client.GetAsync(apiEndpoint))
             {
                 if (response.IsSuccessStatusCode)
                 {
@@ -41,12 +41,14 @@ namespace VShop.Web.Services
                 }
 
                 return productsVM;
-            } 
+            }
         }
+
+
         public async Task<ProductViewModel> FindProductById(int id, string token)
         {
             var client = _clientFactory.CreateClient("ProductApi");
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            PutTokenInHeaderAuthorization(token, client);
 
             using var response = await client.GetAsync(apiEndpoint + id);
 
@@ -61,7 +63,7 @@ namespace VShop.Web.Services
         public async Task<ProductViewModel> CreateProduct(ProductViewModel productVM, string token)
         {
             var client = _clientFactory.CreateClient("ProductApi");
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            PutTokenInHeaderAuthorization(token, client);
 
             StringContent content = new StringContent(JsonSerializer.Serialize(productVM),
                                                         Encoding.UTF8, "application/json");
@@ -80,7 +82,7 @@ namespace VShop.Web.Services
         public async Task<ProductViewModel> UpdateProduct(ProductViewModel productVM, string token)
         {
             var client = _clientFactory.CreateClient("ProductApi");
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            PutTokenInHeaderAuthorization(token, client);
 
             ProductViewModel productUpdated = new ProductViewModel();
 
@@ -97,7 +99,7 @@ namespace VShop.Web.Services
         public async Task<bool> DeleteProductById(int id, string token)
         {
             var client = _clientFactory.CreateClient("ProductApi");
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            PutTokenInHeaderAuthorization(token, client);
 
             using var response = await client.DeleteAsync(apiEndpoint + id);
 
@@ -105,6 +107,11 @@ namespace VShop.Web.Services
                 return false;
 
             return true;
+        }
+
+        private static void PutTokenInHeaderAuthorization(string token, HttpClient client)
+        {
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
         }
     }
 }
