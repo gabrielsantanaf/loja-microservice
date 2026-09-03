@@ -20,11 +20,13 @@ namespace VShop.CartApi.Repositories
 
         public async Task<CartDTO> GetCartByUserIdAsync(string userId)
         {
-            Cart cart = new Cart
-            {
-                //obter o header pelo userID
-                CartHeader = await _context.CartHeaders.FirstOrDefaultAsync(c => c.UserId == userId)
-            };
+            //obter o header pelo userID
+            var cartHeader = await _context.CartHeaders.FirstOrDefaultAsync(c => c.UserId == userId);
+
+            if (cartHeader is null)
+                return null;
+
+            Cart cart = new Cart { CartHeader = cartHeader };
 
             //obter os itens
             cart.CartItems = _context.CartItems.Where(c => c.CartHeaderId == cart.CartHeader.Id)

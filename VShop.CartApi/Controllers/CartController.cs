@@ -16,7 +16,7 @@ namespace VShop.CartApi.Controllers
             _cartRepository = cartRepository;
         }
 
-        [HttpGet("getcart/{id}")]
+        [HttpGet("getcart/{userId}")]
         public async Task<ActionResult<CartDTO>> GetByUserId(string userId)
         {
             var cartDTO = await _cartRepository.GetCartByUserIdAsync(userId);
