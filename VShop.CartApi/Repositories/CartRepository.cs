@@ -43,7 +43,7 @@ namespace VShop.CartApi.Repositories
                 int total = _context.CartItems.Where(c => c.CartHeaderId == cartItem.CartHeaderId).Count();
 
                 _context.CartItems.Remove(cartItem);
-                _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
 
                 if (total == 1)
                 {
