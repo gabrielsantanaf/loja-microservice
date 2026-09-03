@@ -43,14 +43,15 @@ namespace VShop.CartApi.Repositories
                 int total = _context.CartItems.Where(c => c.CartHeaderId == cartItem.CartHeaderId).Count();
 
                 _context.CartItems.Remove(cartItem);
+                _context.SaveChangesAsync();
 
                 if (total == 1)
                 {
                     var cartHeaderRemove = await _context.CartHeaders.FirstOrDefaultAsync( c => c.Id == cartItem.CartHeaderId);
 
                     _context.CartHeaders.Remove(cartHeaderRemove);
+                    await _context.SaveChangesAsync();
                 }
-                await _context.SaveChangesAsync();
                 return true;
             }
             catch (Exception) 
