@@ -17,6 +17,7 @@ Projeto de estudo de **arquitetura de microsserviços em .NET 8**, simulando uma
 - [Endpoints principais](#endpoints-principais)
 - [Autenticação e autorização](#autenticação-e-autorização)
 - [Observações e limitações conhecidas](#observações-e-limitações-conhecidas)
+- [Licença](#licença)
 
 ## Visão geral da arquitetura
 
@@ -217,3 +218,9 @@ Apenas a role `Admin` enxerga o menu "Management" (CRUD de produtos).
 - **Cupom não é validado pela `CartApi`**: quem consulta o percentual de desconto na `DiscountApi` e recalcula o total é o `VShop.Web`; a `CartApi` apenas grava o código do cupom recebido, sem checar se ele existe.
 - **Segredos em texto puro**: client secret do OIDC e credenciais de banco ficam em arquivos de configuração locais — aceitável para um projeto de estudo, não para produção.
 - **Sem testes automatizados** e sem pipeline de CI configurado no repositório.
+
+## Licença
+
+O código deste repositório está sob a licença [MIT](LICENSE) — sinta-se livre para estudar, clonar e reaproveitar.
+
+Isso não se estende às dependências de terceiros, que mantêm suas próprias licenças. Em especial, o **Duende IdentityServer** é distribuído sob a Reciprocal Public License (RPL 1.5): o uso é gratuito para desenvolvimento, testes, projetos pessoais/educacionais e empresas abaixo de um teto de faturamento anual definido pela Duende, mas uso comercial em produção acima desse teto exige licença paga. Este projeto é de estudo e se enquadra no uso gratuito — se for reaproveitar a base para algo comercial, confira os termos atuais em [duendesoftware.com](https://duendesoftware.com/products/identityserver).
