@@ -1,17 +1,21 @@
-﻿<ul class="navbar-nav">
+<ul class="navbar-nav align-items-sm-center">
     @if (User.Identity.IsAuthenticated)
     {
         <li class="nav-item">
-            <a class="nav-link" href="#">Olá, @User.Identity.Name</a>
+            <a class="nav-link text-dark" href="#"><i class="fas fa-user-circle"></i> Olá, @User.Identity.Name</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" asp-action="Logout" asp-controller="Home">Logout</a>
+            <a class="nav-link" asp-action="Logout" asp-controller="Home">
+                <span class="btn btn-outline-secondary btn-sm">Logout</span>
+            </a>
         </li>
     }
     else
     {
         <li class="nav-item">
-            <a class="nav-link" asp-action="Login" asp-controller="Home">Login</a>
+            <a class="nav-link" asp-action="Login" asp-controller="Home">
+                <span class="btn btn-primary btn-sm">Login</span>
+            </a>
         </li>
     }
 </ul>

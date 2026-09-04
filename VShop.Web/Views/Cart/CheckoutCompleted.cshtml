@@ -1,9 +1,12 @@
-﻿<div class="text-center">
-    <img src="~/images/checkout3.jpg" class="img-fluid" alt="Checkout">
-    <h3 class="card-title">Congratulations</h3>
-    <h5>Thank for your payment</h5>
-    <span style="font-size:20px">Your Order Number is : <b> 999-X88 </b></span>
-    <a class="page-link" asp-area="" asp-controller="Home" asp-action="Index">
-        <h3>Return to Shopping</h3>
-    </a>
+<div class="card mx-auto text-center" style="max-width:520px;">
+    <div class="card-body p-5">
+        <img src="~/images/checkout3.jpg" class="img-fluid rounded mb-4" alt="Checkout">
+        <div class="empty-state-icon text-success mb-2"><i class="fa fa-check-circle"></i></div>
+        <h3 class="card-title">Congratulations</h3>
+        <h6 class="text-muted">Thank for your payment</h6>
+        <p class="fs-5 mt-3">Your Order Number is : <b>999-X88</b></p>
+        <a class="btn btn-primary mt-3" asp-area="" asp-controller="Home" asp-action="Index">
+            Return to Shopping
+        </a>
+    </div>
 </div>

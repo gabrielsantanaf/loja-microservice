@@ -1,10 +1,11 @@
-﻿@model int 
-<h2>
-    <p class="text-danger">
+@model int
+
+<div class="empty-state">
+    <div class="empty-state-icon"><i class="fa fa-exclamation-circle"></i></div>
+    <p class="text-danger fs-5 mb-3">
         The Item with id = @Model cannot be removed !!!
     </p>
-</h2>
-
-<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">
-    Return to Shopping
-</a>
+    <a class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="Index">
+        Return to Shopping
+    </a>
+</div>

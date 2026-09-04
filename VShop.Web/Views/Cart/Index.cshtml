@@ -1,111 +1,107 @@
-﻿@model CartViewModel
+@model CartViewModel
 
 @if (Model.CartHeader is not null && Model.CartItems.Count() > 0)
 {
     <form method="post">
-        <br />
         <input asp-for="CartHeader.UserId" hidden />
         <input asp-for="CartHeader.Id" hidden />
         <input asp-for="CartItems" hidden />
-        <div>
-            <div class="card border mt-4 container">
-                <div class="card-header bg-dark text-light ml-0 row">
-                    <div class="col-5">
-                        <i class="fa fa-shopping-cart"></i> &nbsp;
-                        Shopping Cart
-                    </div>
-                    <div class="col-5 text-end">
-                        <a asp-action="Index" asp-controller="Home" class="btn btn-outline-light btn-sm">
-                            Go Shopping
-                        </a>
+        <div class="card">
+            <div class="card-header bg-dark text-light row align-items-center mx-0">
+                <div class="col-6">
+                    <i class="fa fa-shopping-cart"></i> &nbsp;
+                    Shopping Cart
+                </div>
+                <div class="col-6 text-end">
+                    <a asp-action="Index" asp-controller="Home" class="btn btn-outline-light btn-sm">
+                        Go Shopping
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="d-none d-lg-block">
+                    <div class="row text-muted fw-semibold">
+                        <div class="col-lg-2">
+                        </div>
+                        <div class="col-lg-5">
+                            Products
+                        </div>
+                        <div class="col-lg-2">
+                            Price
+                        </div>
+                        <div class="col-lg-2">
+                            Quantity
+                        </div>
+                        <div class="col-lg-1">
+                        </div>
                     </div>
                 </div>
-                <div class="card-body">
-                    <div class="d-none d-lg-block">
-                        <div class="row text-dark">
-                            <div class="col-lg-2">
+
+                <hr />
+
+                @foreach (var item in Model.CartItems)
+                {
+                    <div class="row h-100 align-items-center">
+                        <div class="col-3 col-md-2 py-2">
+                            <img src="/images/escolar/@item.Product.ImageURL" class="product-thumb-sm mx-auto" />
+                        </div>
+                        <div class="col-6 col-md-5">
+                            <h5 class="mb-1">@item.Product.Name</h5>
+                            <div class="text-muted" style="font-size:12px;">
+                                @Html.Raw(item.Product.Description)
                             </div>
-                            <div class="col-lg-5">
-                                Products
-                            </div>
-                            <div class="col-lg-2">
-                                Price
-                            </div>
-                            <div class="col-lg-2">
-                                Quantity
-                            </div>
-                            <div class="col-lg-1">
-                            </div>
+                        </div>
+                        <div class="col-2 col-md-2 text-primary fw-bold">
+                            @string.Format("{0:c}", item.Product.Price)
+                        </div>
+                        <div class="col-2 col-md-2 fw-bold">
+                            @item.Quantity
+                        </div>
+                        <div class="col-2 col-lg-1 p-0 text-center">
+                            <a asp-action="RemoveItem" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm">
+                                <i class="fa fa-trash"></i>
+                            </a>
                         </div>
                     </div>
-
                     <hr />
-
-                    @foreach (var item in Model.CartItems)
-                    {
-                        <div class="row h-100">
-                            <div class="col-3 col-md-2 text-center py-2">
-                                <img src="/images/escolar/@item.Product.ImageURL" class="rounded" width="100%" />
-                            </div>
-                            <div class="col-6 col-md-5">
-                                <h5>@item.Product.Name</h5>
-                                <div style="font-size:12px;">
-                                    @Html.Raw(item.Product.Description)
-                                </div>
-                            </div>
-                            <div class="col-2 col-md-2 pt-md-4 text-primary">
-                                <span style="font-size:17px;font-weight:bolder">
-                                    @string.Format("{0:c}", item.Product.Price)
-                                </span>
-                            </div>
-                            <div class="col-2 col-md-2 pt-md-4">
-                                <span style="font-size:17px;font-weight:bolder">
-                                    @item.Quantity
-                                </span>
-                            </div>
-                            <div class="col-2 col-lg-1 p-0 pt-lg-4 text-center">
-                                <a asp-action="RemoveItem" asp-route-id="@item.Id" class="btn btn-outline-danger">
-                                    <i class="fa fa-trash"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <hr />
-                    }
-                    <div class="row">
-                        <div class="col-6">
-                            @if (string.IsNullOrEmpty(Model.CartHeader.CouponCode))
-                            {
-                                <span style="font-weight:bold">Discount:</span>
-                                <input asp-for="CartHeader.CouponCode" />
-                                <button type="submit" asp-action="ApplyCoupon" class="btn btn-info" class="btn-sucess" style="font-weight:bold;">
+                }
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        @if (string.IsNullOrEmpty(Model.CartHeader.CouponCode))
+                        {
+                            <div class="input-group" style="max-width:420px;">
+                                <span class="input-group-text fw-semibold">Discount</span>
+                                <input asp-for="CartHeader.CouponCode" class="form-control" />
+                                <button type="submit" asp-action="ApplyCoupon" class="btn btn-primary">
                                     Apply
                                 </button>
-                            }
-                            else
-                            {
-                                <span style="font-weight:bold">Discount:</span>
-                                <input asp-for="CartHeader.CouponCode" disabled />
-                                <button type="submit" asp-action="DeleteCoupon" class="btn btn-info" class="btn-danger" style="font-weight:bold;">
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="input-group" style="max-width:420px;">
+                                <span class="input-group-text fw-semibold">Discount</span>
+                                <input asp-for="CartHeader.CouponCode" class="form-control" disabled />
+                                <button type="submit" asp-action="DeleteCoupon" class="btn btn-danger">
                                     Delete
                                 </button>
-                            }
-                        </div>
-                        <div class="col-6 text-end">
-                            <span class="text-danger" style="font-size:25px;font-weight:bolder">
-                                Total Amount: @string.Format("{0:c}", Model.CartHeader.TotalAmount)
-                                <br />
-                            </span>
-                        </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="col-md-6 text-md-end mt-3 mt-md-0">
+                        <span class="text-danger fs-4 fw-bold">
+                            Total Amount: @string.Format("{0:c}", Model.CartHeader.TotalAmount)
+                        </span>
                     </div>
                 </div>
-                <div class="card-footer row">
-                    <div class="col-6 col-md-3 offset-md-6">
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <a asp-action="Checkout" class="btn btn-primary form-control" style="font-weight:bold">
-                            <span>Checkout</span>
-                        </a>
-                    </div>
+            </div>
+            <div class="card-footer row">
+                <div class="col-6 col-md-3 offset-md-6">
+                </div>
+                <div class="col-6 col-md-3">
+                    <a asp-action="Checkout" class="btn btn-primary form-control fw-bold">
+                        <span>Checkout</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -113,7 +109,8 @@
 }
 else
 {
-    <div>
-        <p>Cart Empty !!! Shopping NOW...</p>
+    <div class="empty-state">
+        <div class="empty-state-icon"><i class="fa fa-shopping-cart"></i></div>
+        <p class="mb-0 fs-5">Cart Empty !!! Shopping NOW...</p>
     </div>
 }
