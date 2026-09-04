@@ -38,6 +38,18 @@ namespace VShop.CartApi.Controllers
             return Ok(cart);
         }
 
+        [HttpPost("applycoupon")]
+        public async Task<ActionResult<CartDTO>> ApplyCoupon(CartDTO cartDTO)
+        {
+            var result = await _cartRepository.ApplyCouponAsync(cartDTO.CartHeader.UserId, cartDTO.CartHeader.CouponCode);
+
+            if (!result)
+            {
+                return NotFound($"CartHeader not found for userId = {cartDTO.CartHeader.UserId}");
+            }
+            return Ok(result);
+        }
+
         [HttpPut("updatecart")]
         public async Task<ActionResult<CartDTO>> UpdadeCart(CartDTO cartDTO)
         {
@@ -58,6 +70,17 @@ namespace VShop.CartApi.Controllers
                 return NotFound();
 
             return Ok(status);
+        }
+
+        [HttpDelete("deletecoupon/{userId}")]
+        public async Task<ActionResult<CartDTO>> DeleteCoupon(string userId)
+        {
+            var result = await _cartRepository.DeleteCouponAsync(userId);
+
+            if (!result)
+                return NotFound("Discount Coupon not found for userId = " + userId);
+
+            return Ok(result);
         }
     }
 }
